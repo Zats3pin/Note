@@ -13,8 +13,9 @@ class NoteServiceImpl {
                 updateText(note.text, note.id!!)
                 return
             }
-        this.note = note.copy(createdAt = Instant.now(), updatedAt = Instant.now())
-        noteList.add(note)
+        else{
+        this.note = note.copy(id = noteList.lastIndex + 2.toLong(),createdAt = Instant.now(), updatedAt = Instant.now())
+        noteList.add(this.note)}
     }
 
     fun getAll(){
