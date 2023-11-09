@@ -8,11 +8,12 @@ class NoteServiceImpl {
     fun addNote(text: String?, id: Long){
         noteList.add(Note(text = text,id = id))
     }
-    fun save (note: Note){
+    fun save (note: Note){//
             if (note.id != 0.toLong()) {
-                updateText(note.text)
+                updateText(note.text, note.id!!)
                 return
             }
+        this.note = note.copy(createdAt = Instant.now(), updatedAt = Instant.now())
         noteList.add(note)
     }
 
@@ -39,8 +40,12 @@ class NoteServiceImpl {
 
 
 
-fun updateText(text: String?) { // dobavit id
-         this.note = note.copy(text = text, updatedAt = Instant.now())
+fun updateText(text: String?, id: Long) { // dobavit id
+
+    for (item in noteList){
+        if (note.id == id) this.note = note.copy(text = text, updatedAt = Instant.now())
+    }
+
     }
 
     fun getNote() : String { // dobavit id
@@ -59,3 +64,5 @@ fun updateText(text: String?) { // dobavit id
     //.takeWhile {it.index < Int-1 }
 
 }
+
+

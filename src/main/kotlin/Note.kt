@@ -9,6 +9,9 @@ data class Note(
 
 
 
+
+
+
     override fun toString(): String {
         return  " ${text} - текст \n " +
                 "${createdAt} - дата создания \n " +
